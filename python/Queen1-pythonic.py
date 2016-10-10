@@ -7,13 +7,9 @@ count = 0
 def DFS(row):
     global count
     for col in range(n):
-        ok = True
-        for i in range(row):
-            if col == sol[i] or col - sol[i] == row - i or col - sol[i] == i - row:
-               ok = False
-               break
-        if not ok:
-            continue
+        if any(col == sol[i] or
+               col - sol[i] == row - i or
+               col - sol[i] == i - row for i in range(row)): continue
         if row == n - 1:
             count += 1
         else:
